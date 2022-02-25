@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Module_1
+namespace Week6Assignment
 {
     class Program
     {
