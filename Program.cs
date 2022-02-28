@@ -24,14 +24,6 @@ namespace Week6Assignment
             string file = "systemtickets.csv";
             string addTicket;
 
-             List<string> ticketID = new List<string>();
-             List<string> summary = new List<string>();
-             List<string> status = new List<string>();
-             List<string> priority = new List<string>();
-             List<string> submitter = new List<string>();
-             List<string> assigned = new List<string>();
-             List<string> watching = new List<string>();
-
 
             Console.WriteLine("Ticketing System Application\n");
 
@@ -48,34 +40,40 @@ namespace Week6Assignment
                 ticketIDNumber += 1;
 
                 Console.WriteLine(ticketIDNumber);
+
             }
+            sr.Close();
 
            
  
 
-            StreamWriter sw = new StreamWriter(file);
+            StreamWriter sw = new StreamWriter(file, true);
             do
-            {               
-                Console.WriteLine("Enter ticket ID: ");
-                ticketID = Console.ReadLine();
+            {   
+                int ticketID = ticketIDNumber;
+                Console.WriteLine("Ticket ID Number is: " + ticketID);
 
                 Console.WriteLine("Enter ticket summary: ");
-                summary = Console.ReadLine();
+                string summary = Console.ReadLine();
 
                 Console.WriteLine("Enter ticket status: ");
-                status = Console.ReadLine();
+                string status = Console.ReadLine();
 
                 Console.WriteLine("Enter ticket priority: ");
-                priority = Console.ReadLine();
+                string priority = Console.ReadLine();
 
                 Console.WriteLine("Enter ticket submitter: ");
-                submitter = Console.ReadLine();
+                string submitter = Console.ReadLine();
 
                 Console.WriteLine("Who is assigned ticket?: ");
-                assigned = Console.ReadLine();
+                string assigned = Console.ReadLine();
 
                 Console.WriteLine("Who is watching ticket?: ");
-                watching = Console.ReadLine();
+                string watching = Console.ReadLine();
+
+                
+                Ticket ticket = new Ticket(ticketID, summary, status, priority, submitter, assigned, watching);
+                Console.WriteLine(ticket.summary);
 
                 sw.WriteLine(ticketID + "," + summary + "," + status + "," + priority + "," + submitter + "," + assigned + "," + watching);
 

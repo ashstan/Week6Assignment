@@ -15,13 +15,13 @@ namespace Week6Assignment
 
             public Ticket(int ticketID, string summary, string status, string priority, string submitter, string assigned, string watching)
             {
-                ticketID = ticketID;
-                summary - summary;
-                status = status;
-                priority = priority;
-                submitter = submitter;
-                assigned - assigned;
-                watching = watching;
+                ticketID = this.ticketID;
+                summary = this.summary;
+                status = this.status;
+                priority = this.priority;
+                submitter = this.submitter;
+                assigned = this.assigned;
+                watching = this.watching;
             }
     }
 }
