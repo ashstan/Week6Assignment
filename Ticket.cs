@@ -13,15 +13,7 @@ namespace Week6Assignment
             public string assigned { get; set; }
             public string watching { get; set; }
 
-            public Ticket(int ticketID, string summary, string status, string priority, string submitter, string assigned, string watching)
-            {
-                ticketID = this.ticketID;
-                summary = this.summary;
-                status = this.status;
-                priority = this.priority;
-                submitter = this.submitter;
-                assigned = this.assigned;
-                watching = this.watching;
-            }
+        
+
     }
 }

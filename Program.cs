@@ -10,7 +10,11 @@ namespace Week6Assignment
         static void Main(string[] args)
         {
 
-            string file = "systemtickets.csv";
+            //string file = "systemtickets.csv"; -- old program
+            string bugFile = "Bug.csv";
+            string enhancementsFile = "Enhancements.csv";
+            string taskFile = "Task.csv";
+
             string addTicket;
 
 
@@ -18,61 +22,92 @@ namespace Week6Assignment
 
             Console.WriteLine("Would you like to add a ticket? (y/n)");
             addTicket = Console.ReadLine().ToLower();
-
-            //split ticket ID # so it autogenerates
-            StreamReader sr = new StreamReader(file);
-            string ticketIDstring = File.ReadLines(file).Last().Split(',')[0];
-            int ticketIDNumber;
-            if (!int.TryParse(ticketIDstring, out ticketIDNumber)) {
-                Console.WriteLine("Error");
-            } else {
-                ticketIDNumber += 1;
-
-                Console.WriteLine(ticketIDNumber);
-
-            }
-            sr.Close();
-
-           
- 
-
-            StreamWriter sw = new StreamWriter(file, true);
             do
-            {   
-                int ticketID = ticketIDNumber;
-                Console.WriteLine("Ticket ID Number is: " + ticketID);
+            {
+                Console.WriteLine("What type of ticket would you like to add?");
+                Console.WriteLine("Enter 1 for bug/defect ticket, 2 for enhancement ticket, or 3 for task ticket: ");
+                string ticketType = Console.ReadLine();
 
-                Console.WriteLine("Enter ticket summary: ");
-                string summary = Console.ReadLine();
+                if (ticketType == "1")
+                {
+                    //bug ticket
+                    StreamReader sr = new StreamReader(bugFile);
+                    string last_line = File.ReadLines(bugFile).LastOrDefault();
+                    int ticketIDNumber = 1;
+                    if (!string.IsNullOrEmpty(last_line))
+                    {
+                        string ticketIDstring = File.ReadLines(bugFile).Last().Split(',')[0];
+                        if (!int.TryParse(ticketIDstring, out ticketIDNumber))
+                        {
+                            Console.WriteLine("Error");
+                        }
+                        else
+                        {
+                            ticketIDNumber += 1;
+                            Console.WriteLine(ticketIDNumber);
+                        }
+                    }
+                    sr.Close();
+                    
+                    Bug bug = new Bug(ticketIDNumber);
+                    bug.getTicketInfo();
+                    bug.writeTicketToFile("Bug.csv");
 
-                Console.WriteLine("Enter ticket status: ");
-                string status = Console.ReadLine();
-
-                Console.WriteLine("Enter ticket priority: ");
-                string priority = Console.ReadLine();
-
-                Console.WriteLine("Enter ticket submitter: ");
-                string submitter = Console.ReadLine();
-
-                Console.WriteLine("Who is assigned ticket?: ");
-                string assigned = Console.ReadLine();
-
-                Console.WriteLine("Who is watching ticket?: ");
-                string watching = Console.ReadLine();
-
-                
-                Ticket ticket = new Ticket(ticketID, summary, status, priority, submitter, assigned, watching);
-                Console.WriteLine(ticket.summary);
-
-                sw.WriteLine(ticketID + "," + summary + "," + status + "," + priority + "," + submitter + "," + assigned + "," + watching);
-
+                }
+                else if (ticketType == "2")
+                {
+                    //enhancement ticket
+                    StreamReader sr = new StreamReader(enhancementsFile);
+                    string last_line = File.ReadLines(enhancementsFile).LastOrDefault();
+                    int ticketIDNumber = 1;
+                    if (!string.IsNullOrEmpty(last_line))
+                    {
+                        string ticketIDstring = File.ReadLines(enhancementsFile).Last().Split(',')[0];
+                        if (!int.TryParse(ticketIDstring, out ticketIDNumber))
+                        {
+                            Console.WriteLine("Error");
+                        }
+                        else
+                        {
+                            ticketIDNumber += 1;
+                            Console.WriteLine(ticketIDNumber);
+                        }
+                    }
+                    sr.Close();
+                    
+                    Enhancements enhancements = new Enhancements(ticketIDNumber);
+                    enhancements.getTicketInfo();
+                    enhancements.writeTicketToFile("Enhancements.csv");
+                }
+                else if (ticketType == "3")
+                {
+                    //task ticket
+                    StreamReader sr = new StreamReader(taskFile);
+                    string last_line = File.ReadLines(taskFile).LastOrDefault();
+                    int ticketIDNumber = 1;
+                    if (!string.IsNullOrEmpty(last_line))
+                    {
+                        string ticketIDstring = File.ReadLines(taskFile).Last().Split(',')[0];
+                        if (!int.TryParse(ticketIDstring, out ticketIDNumber))
+                        {
+                            Console.WriteLine("Error");
+                        }
+                        else
+                        {
+                            ticketIDNumber += 1;
+                            Console.WriteLine(ticketIDNumber);
+                        }
+                    }
+                    sr.Close();
+                    
+                    Task task = new Task(ticketIDNumber);
+                    task.getTicketInfo();
+                    task.writeTicketToFile("Task.csv");                    
+                }
                 Console.WriteLine("Would you like to add a ticket? (y/n)");
                 addTicket = Console.ReadLine();
-
             } while (addTicket == "y");
-
-            sw.Close();
-
         }
+
     }
 }
