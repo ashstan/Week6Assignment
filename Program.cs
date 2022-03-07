@@ -10,17 +10,6 @@ namespace Week6Assignment
         static void Main(string[] args)
         {
 
-            //commented out, ticket class will create these
-            // string ticketID;
-            // string summary;
-            // string status;
-            // string priority;
-            // string submitter;
-            // string assigned;
-            // string watching;
-
-            //create parallel lists of string details
-            //lists are used since we do not know number of lines of data
             string file = "systemtickets.csv";
             string addTicket;
 
