@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Week6Assignment
 {
-    public class Ticket
+    public abstract class Ticket
     {
             public int ticketID { get; set; }
             public string summary { get; set; }
